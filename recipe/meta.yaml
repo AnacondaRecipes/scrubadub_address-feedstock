@@ -50,7 +50,12 @@ about:
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE
-  description: 
+  description: |
+    scrubadub removes personally identifiable information from text. scrubadub_address is an extension that uses pyap and libpostal to remove addresses from text.
+    This package contains one extra detector:
+      scrubadub_address.detectors.AddressDetector - A detector that finds British, American and Canadian addresses.
+  dev_url: https://github.com/LeapBeyond/scrubadub_address
+  doc_url: https://scrubadub.readthedocs.io
 
 extra:
   recipe-maintainers:

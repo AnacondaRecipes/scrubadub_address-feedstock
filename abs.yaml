@@ -7,3 +7,4 @@ upload_channels:
 channels:
   - https://staging.continuum.io/prefect/fs/pyap-feedstock/pr1/c514590 # pyap
   - https://staging.continuum.io/prefect/fs/scrubadub-feedstock/pr1/17ce7cb # scrubadub
+  - https://staging.continuum.io/prefect/fs/textblob-feedstock/pr4/8ae0a6d # textblob
