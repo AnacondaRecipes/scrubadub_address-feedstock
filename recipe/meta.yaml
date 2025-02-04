@@ -18,6 +18,7 @@ build:
   # https://github.com/AnacondaRecipes/postal-feedstock/blob/master/recipe/meta.yaml#L15
   skip: True  # [s390x]
   skip: True  # [win]
+
 requirements:
   build: 
     - patch  # [not win]
