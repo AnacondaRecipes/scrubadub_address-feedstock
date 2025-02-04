@@ -43,10 +43,17 @@ test:
     - scrubadub_address
   commands:
     - pip check
-    - python tests/run.py
+    - python tests/run.py  # [py<=310]
   requires:
     - pip
-    - nose
+    # py312 error in nose:
+    # ModuleNotFoundError: No module named 'imp'
+    # imp is deprecated and is turned into importlib in 3.12.
+    # Need to change 'import imp' with 'import importlib as imp'
+    # py311 error in nose:
+    # AttributeError: module 'inspect' has no attribute 'getargspec'. Did you mean: 'getargs'?
+    # The Inspect.getargspec function is no longer available in Python 3.11. You can use the Inspect.signature function instead.
+    - nose  # [py<=310]
     - wasabi
 
 about:
