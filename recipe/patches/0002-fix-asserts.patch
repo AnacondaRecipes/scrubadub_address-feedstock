@@ -1,0 +1,27 @@
+From 2ebaeefb200fb92dbbd7f0a457e5d21ce9bbc1a4 Mon Sep 17 00:00:00 2001
+From: Andrii Osipov <aosipov@anaconda.com>
+Date: Wed, 5 Feb 2025 13:40:22 -0800
+Subject: [PATCH] fix asserts
+
+---
+ tests/test_detector_address.py | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/tests/test_detector_address.py b/tests/test_detector_address.py
+index fcd84f2..853e4f1 100644
+--- a/tests/test_detector_address.py
++++ b/tests/test_detector_address.py
+@@ -39,7 +39,7 @@ class AddressTestCase(unittest.TestCase):
+         for address, result in to_test:
+             matches = list(detector.iter_filth(test_str.format(address)))
+             if result:
+-                self.assertEquals(1, len(matches), "Unable to match " + address)
+-                self.assertEquals(matches[0].text, address)
++                self.assertEqual(1, len(matches), "Unable to match " + address)
++                self.assertEqual(matches[0].text, address)
+             else:
+-                self.assertEquals(matches, [])
++                self.assertEqual(matches, [])
+-- 
+2.39.3 (Apple Git-146)
+
