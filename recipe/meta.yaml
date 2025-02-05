@@ -9,8 +9,7 @@ source:
   url: https://github.com/LeapBeyond/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: c7679c661cdf2ccca9e39084ea06eb3a47668fc257eda4c2c0a81ee8bdbef3f8
   patches:
-    - patches/0001-remove-mypy-and-flake8-tests.patch
-    - patches/0002-fix-asserts.patch
+    - patches/0001-fix-asserts.patch
 
 build:
   number: 0
