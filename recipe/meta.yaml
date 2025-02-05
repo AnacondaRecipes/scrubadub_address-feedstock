@@ -1,0 +1,67 @@
+{% set name = "scrubadub_address" %}
+{% set version = "2.0.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/LeapBeyond/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: c7679c661cdf2ccca9e39084ea06eb3a47668fc257eda4c2c0a81ee8bdbef3f8
+  patches:
+    - patches/0001-fix-asserts.patch
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  # No libpostal for win or s390x
+  # https://github.com/AnacondaRecipes/postal-feedstock/blob/master/recipe/meta.yaml#L15
+  skip: True  # [s390x]
+  skip: True  # [win]
+
+requirements:
+  build: 
+    - patch  # [not win]
+  host:
+    - python
+    - pip
+    - wheel
+    - setuptools
+  run:
+    - python
+    - pyap
+    - scrubadub >=2.0.0
+    # https://github.com/LeapBeyond/scrubadub_address/blob/v2.0.1/scrubadub_address/detectors/address.py#L4
+    # taking postal out because readthedocs can't handle the fact it needs a C-library
+    # Need to be in run deps
+    - postal
+
+test:
+  source_files:
+    - tests
+    - scrubadub_address
+  imports:
+    - scrubadub_address
+  commands:
+    - pip check
+    - pytest -v tests
+  requires:
+    - pip
+    - pytest
+
+about:
+  home: https://github.com/LeapBeyond/scrubadub_address
+  summary: Use the Stanford NER model to clean personally identifiable information from dirty dirty text.
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+  description: |
+    scrubadub removes personally identifiable information from text. scrubadub_address is an extension that uses pyap and libpostal to remove addresses from text.
+    This package contains one extra detector:
+      scrubadub_address.detectors.AddressDetector - A detector that finds British, American and Canadian addresses.
+  dev_url: https://github.com/LeapBeyond/scrubadub_address
+  doc_url: https://scrubadub.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - snegireff
