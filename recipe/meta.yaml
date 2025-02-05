@@ -30,8 +30,9 @@ requirements:
   run:
     - python
     - pyap
-    - scrubadub >=2.0.0rc0
+    - scrubadub >=2.0.0
     # https://github.com/LeapBeyond/scrubadub_address/blob/v2.0.1/scrubadub_address/detectors/address.py#L4
+    # taking postal out because readthedocs can't handle the fact it needs a C-library
     # Need to be in run deps
     - postal
 
